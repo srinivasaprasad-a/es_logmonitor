@@ -1,0 +1,18 @@
+2018-10-25 12:38:58,626 - process_hive_to_meds.hive_to_meds.HiveToMeds - INFO - Process process_hive_to_meds_innovid_preview_url is running for the dates 2018-07-09 to 2018-10-23
+2018-10-25 12:38:58,626 - process_hive_to_meds.hive_to_meds.HiveToMeds - INFO - Creating export file in /tmp/xyz/innovid_preview_url
+2018-10-25 12:40:01,602 - process_hive_to_meds.hive_to_meds.HiveToMeds - INFO - Sqoop statement: ACCUMULO_HOME=/tmp \
+sqoop export \
+-Dmapreduce.job.name="innovid_preview_url" \
+--connect jdbc:teradata://xyz.xyz.com/DATABASE=PD_CIMAOPS_DB \
+--username "xyz" \
+--password "***masked***" \
+--table "innovid_preview_url_hive_meds" \
+--export-dir "/tmp/xyz/innovid_preview_url" \
+--input-fields-terminated-by "\t" \
+--input-null-string "\\\N" \
+--input-null-non-string "\\\N"
+2018-10-25 12:42:19,929 - process_hive_to_meds.hive_to_meds.HiveToMeds - ERROR - Sqoop export failed
+2018-10-25 12:42:19,930 - process_hive_to_meds.hive_to_meds.HiveToMeds - ERROR - Output of the shell script is ('', 'Note: /tmp/sqoop-xyz/compile/17fccc1ee5ef455865b1ca43afb71cab/innovid_preview_url_hive_meds.java uses or overrides a deprecated API.\nNote: Recompile with -Xlint:deprecation for details.\n18/10/25 12:42:19 ERROR tool.ExportTool: Error during export: \nExport job failed!\n\tat org.apache.sqoop.mapreduce.ExportJobBase.runExport(ExportJobBase.java:439)\n\tat com.cloudera.connector.teradata.TeradataManager.exportTable(TeradataManager.java:105)\n\tat org.apache.sqoop.tool.ExportTool.exportTable(ExportTool.java:80)\n\tat org.apache.sqoop.tool.ExportTool.run(ExportTool.java:99)\n\tat org.apache.sqoop.Sqoop.run(Sqoop.java:147)\n\tat org.apache.hadoop.util.ToolRunner.run(ToolRunner.java:70)\n\tat org.apache.sqoop.Sqoop.runSqoop(Sqoop.java:183)\n\tat org.apache.sqoop.Sqoop.runTool(Sqoop.java:234)\n\tat org.apache.sqoop.Sqoop.runTool(Sqoop.java:243)\n\tat org.apache.sqoop.Sqoop.main(Sqoop.java:252)\n')
+2018-10-25 12:42:19,931 - xyz.utils.hdfs - INFO - Making HDFS directory /data/archive/xyz/logs/process_hive_to_meds_innovid_preview_url
+2018-10-25 12:42:22,630 - xyz.utils.hdfs - INFO - Putting local file, /home/xyz/logs/process_hive_to_meds_innovid_preview_url/2018-10-25_123858_601239.log.hdfs, to HDFS path, /data/archive/xyz/logs/process_hive_to_meds_innovid_preview_url/2018-10-25_123858_601239.log
+2018-10-25 12:42:23,164 - xyz.utils.hdfs - INFO - Making HDFS directory /data/archive/xyz/logs/process_hive_to_meds_innovid_preview_url/2018-10-25_123858_601239.log

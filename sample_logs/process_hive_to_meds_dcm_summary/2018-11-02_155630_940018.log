@@ -1,0 +1,23 @@
+2018-11-02 15:56:30,988 - process_hive_to_meds.hive_to_meds_dcm_summary.HiveToMedsDcmSummary - INFO - Process process_hive_to_meds_dcm_summary is running for default dates
+2018-11-02 15:56:30,989 - process_hive_to_meds.hive_to_meds_dcm_summary.HiveToMedsDcmSummary - INFO - Process process_hive_to_meds_dcm_summary is running from 2018-10-30 to 2018-10-30
+2018-11-02 15:56:30,989 - process_hive_to_meds.hive_to_meds_dcm_summary.HiveToMedsDcmSummary - INFO - A staging table xyz_staging.DCM_SUMMARY_VALUES will be used by this process
+2018-11-02 15:56:32,927 - process_hive_to_meds.hive_to_meds_dcm_summary.HiveToMedsDcmSummary - INFO - Table xyz_staging.DCM_SUMMARY_VALUES already exists, /srv/python/process_hive_to_meds/resources/hql/dcm_summary/dcm_summary_create_tempTable.hql will not be run.
+2018-11-02 15:56:32,927 - process_hive_to_meds.hive_to_meds_dcm_summary.HiveToMedsDcmSummary - INFO - Inserting data for the partition 2018-10-30 into xyz_staging.DCM_SUMMARY_VALUES
+2018-11-02 15:59:00,092 - process_hive_to_meds.hive_to_meds_dcm_summary.HiveToMedsDcmSummary - INFO - Creating export file in /tmp/xyz/dcm_summary
+2018-11-02 15:59:31,393 - process_hive_to_meds.hive_to_meds_dcm_summary.HiveToMedsDcmSummary - INFO - Sqoop statement: ACCUMULO_HOME=/tmp \
+sqoop export \
+-Dmapreduce.job.name="dcm_summary" \
+--connect jdbc:teradata://xyz.xyz.com/DATABASE=PD_CIMAOPS_DB \
+--username "xyz" \
+--password "***masked***" \
+--table "HIVE_DAILY_IMPS_CLICKS" \
+--export-dir "/tmp/xyz/dcm_summary" \
+--input-fields-terminated-by "\t" \
+--input-null-string "\\\N" \
+--input-null-non-string "\\\N"
+2018-11-02 16:01:21,610 - process_hive_to_meds.hive_to_meds_dcm_summary.HiveToMedsDcmSummary - INFO - Sqoop export successful
+2018-11-02 16:01:21,610 - process_hive_to_meds.hive_to_meds_dcm_summary.HiveToMedsDcmSummary - INFO - dcm_summary run has completed.
+2018-11-02 16:01:21,610 - process_hive_to_meds.hive_to_meds_dcm_summary.HiveToMedsDcmSummary - INFO - Process Completed
+2018-11-02 16:01:21,611 - xyz.utils.hdfs - INFO - Making HDFS directory /data/archive/xyz/logs/process_hive_to_meds_dcm_summary
+2018-11-02 16:01:24,344 - xyz.utils.hdfs - INFO - Putting local file, /home/xyz/logs/process_hive_to_meds_dcm_summary/2018-11-02_155630_940018.log.hdfs, to HDFS path, /data/archive/xyz/logs/process_hive_to_meds_dcm_summary/2018-11-02_155630_940018.log
+2018-11-02 16:01:24,902 - xyz.utils.hdfs - INFO - Making HDFS directory /data/archive/xyz/logs/process_hive_to_meds_dcm_summary/2018-11-02_155630_940018.log

@@ -1,0 +1,19 @@
+2018-10-28 06:02:19,366 - process_hive_to_meds.hive_to_meds.HiveToMeds - INFO - Process process_hive_to_meds_bluekai_audience is running for the dates 2018-10-27 to 2018-10-27
+2018-10-28 06:02:19,366 - process_hive_to_meds.hive_to_meds.HiveToMeds - INFO - Creating export file in /tmp/xyz/bluekai_audience
+2018-10-28 06:04:31,265 - process_hive_to_meds.hive_to_meds.HiveToMeds - INFO - Sqoop statement: ACCUMULO_HOME=/tmp \
+sqoop export \
+-Dmapreduce.job.name="bluekai_audience" \
+--connect jdbc:teradata://xyz.xyz.com/DATABASE=xyz \
+--username "xyz" \
+--password "***masked***" \
+--table "ad_audience_registry" \
+--export-dir "/tmp/xyz/bluekai_audience" \
+--input-fields-terminated-by "\t" \
+--input-null-string "\\\N" \
+--input-null-non-string "\\\N"
+2018-10-28 06:07:18,819 - process_hive_to_meds.hive_to_meds.HiveToMeds - INFO - Sqoop export successful
+2018-10-28 06:07:18,819 - process_hive_to_meds.hive_to_meds.HiveToMeds - INFO - bluekai_audience run has completed.
+2018-10-28 06:07:18,820 - process_hive_to_meds.hive_to_meds.HiveToMeds - INFO - Process Completed
+2018-10-28 06:07:18,821 - xyz.utils.hdfs - INFO - Making HDFS directory /data/archive/xyz/logs/process_hive_to_meds_bluekai_audience
+2018-10-28 06:07:23,756 - xyz.utils.hdfs - INFO - Putting local file, /home/xyz/logs/process_hive_to_meds_bluekai_audience/2018-10-28_060219_340165.log.hdfs, to HDFS path, /data/archive/xyz/logs/process_hive_to_meds_bluekai_audience/2018-10-28_060219_340165.log
+2018-10-28 06:07:24,321 - xyz.utils.hdfs - INFO - Making HDFS directory /data/archive/xyz/logs/process_hive_to_meds_bluekai_audience/2018-10-28_060219_340165.log

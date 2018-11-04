@@ -1,0 +1,19 @@
+2018-11-01 06:08:58,093 - process_hive_to_meds.hive_to_meds.HiveToMeds - INFO - Process process_hive_to_meds_innovid_preview_url is running for the dates 2018-10-31 to 2018-10-31
+2018-11-01 06:08:58,094 - process_hive_to_meds.hive_to_meds.HiveToMeds - INFO - Creating export file in /tmp/xyz/innovid_preview_url
+2018-11-01 06:11:42,799 - process_hive_to_meds.hive_to_meds.HiveToMeds - INFO - Sqoop statement: ACCUMULO_HOME=/tmp \
+sqoop export \
+-Dmapreduce.job.name="innovid_preview_url" \
+--connect jdbc:teradata://xyz.xyz.com/DATABASE=PD_CIMAOPS_DB \
+--username "xyz" \
+--password "***masked***" \
+--table "INNOVID_PREVIEW_URL_HIVE_MEDS" \
+--export-dir "/tmp/xyz/innovid_preview_url" \
+--input-fields-terminated-by "\t" \
+--input-null-string "\\\N" \
+--input-null-non-string "\\\N"
+2018-11-01 06:17:12,449 - process_hive_to_meds.hive_to_meds.HiveToMeds - INFO - Sqoop export successful
+2018-11-01 06:17:12,449 - process_hive_to_meds.hive_to_meds.HiveToMeds - INFO - innovid_preview_url run has completed.
+2018-11-01 06:17:12,449 - process_hive_to_meds.hive_to_meds.HiveToMeds - INFO - Process Completed
+2018-11-01 06:17:12,450 - xyz.utils.hdfs - INFO - Making HDFS directory /data/archive/xyz/logs/process_hive_to_meds_innovid_preview_url
+2018-11-01 06:17:15,253 - xyz.utils.hdfs - INFO - Putting local file, /home/xyz/logs/process_hive_to_meds_innovid_preview_url/2018-11-01_060846_685011.log.hdfs, to HDFS path, /data/archive/xyz/logs/process_hive_to_meds_innovid_preview_url/2018-11-01_060846_685011.log
+2018-11-01 06:17:15,758 - xyz.utils.hdfs - INFO - Making HDFS directory /data/archive/xyz/logs/process_hive_to_meds_innovid_preview_url/2018-11-01_060846_685011.log

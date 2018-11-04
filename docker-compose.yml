@@ -1,0 +1,89 @@
+version: '3.7'
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.2
+    container_name: elasticsearch
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+      - "network.host=0.0.0.0"
+      - "network.publish_host=elasticsearch"
+      - "discovery.zen.minimum_master_nodes=1"
+      - "cluster.routing.allocation.disk.threshold_enabled=false"
+      - "discovery.type=single-node"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    cap_add:
+      - IPC_LOCK
+    ports:
+      - 9200:9200
+      - 9300:9300
+    networks:
+      - esnet
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:6.4.2
+    container_name: logstash
+    volumes:
+      - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
+    ports:
+      - 5044:5044
+      - 9600:9600
+    environment:
+      - cluster.name=docker-cluster
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "discovery.zen.ping.unicast.hosts=elasticsearch"
+    networks:
+      - esnet
+    depends_on:
+      - elasticsearch
+
+  filebeat:
+    image: filebeat:latest
+    container_name: filebeat
+    volumes: 
+      -  type: bind
+         source: /home/srini/git_repos/es_logmonitor/sample_logs/process_hive_to_meds_dcm_summary
+         target: /usr/share/process_hive_to_meds_dcm_summary
+      -  type: bind
+         source: /home/srini/git_repos/es_logmonitor/sample_logs/process_hive_to_meds_bluekai_audience
+         target: /usr/share/process_hive_to_meds_bluekai_audience
+      -  type: bind
+         source: /home/srini/git_repos/es_logmonitor/sample_logs/process_hive_to_meds_innovid_preview_url
+         target: /usr/share/process_hive_to_meds_innovid_preview_url
+    environment:
+      - cluster.name=docker-cluster
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "discovery.zen.ping.unicast.hosts=logstash"
+    networks:
+      - esnet
+    depends_on:
+      - logstash
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.4.2
+    container_name: kibana
+    ports:
+      - 5601:5601
+    environment:
+      - cluster.name=docker-cluster
+      - elasticsearch.url=http://elasticsearch:9200
+      - server.host=0.0.0.0
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "discovery.zen.ping.unicast.hosts=elasticsearch"
+    networks:
+      - esnet
+    depends_on:
+      - elasticsearch
+
+networks:
+  esnet: 
+    driver: bridge
+
