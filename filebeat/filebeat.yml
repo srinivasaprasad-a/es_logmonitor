@@ -3,6 +3,7 @@ filebeat.inputs:
   enabled: true
   paths:
     - /usr/share/process_hive_to_meds_bluekai_audience/*.log
+    - /usr/share/process_hive_to_meds_dcm_summary/*.log
     - /usr/share/process_hive_to_meds_innovid_preview_url/*.log
 output.logstash:
   hosts: ["logstash:5044"]
