@@ -5,16 +5,6 @@
 2018-10-25 15:06:54,600 - process_hive_to_meds.hive_to_meds_dcm_summary.HiveToMedsDcmSummary - INFO - Inserting data for the partition 2018-10-22 into xyz_staging.DCM_SUMMARY_VALUES
 2018-10-25 15:18:01,196 - process_hive_to_meds.hive_to_meds_dcm_summary.HiveToMedsDcmSummary - INFO - Creating export file in /tmp/xyz/dcm_summary
 2018-10-25 15:19:29,605 - process_hive_to_meds.hive_to_meds_dcm_summary.HiveToMedsDcmSummary - INFO - Sqoop statement: ACCUMULO_HOME=/tmp \
-sqoop export \
--Dmapreduce.job.name="dcm_summary" \
---connect jdbc:teradata://xyz.xyz.com/DATABASE=PD_CIMAOPS_DB \
---username "xyz" \
---password "***masked***" \
---table "HIVE_DAILY_IMPS_CLICKS" \
---export-dir "/tmp/xyz/dcm_summary" \
---input-fields-terminated-by "\t" \
---input-null-string "\\\N" \
---input-null-non-string "\\\N"
 2018-10-25 15:22:38,699 - process_hive_to_meds.hive_to_meds_dcm_summary.HiveToMedsDcmSummary - INFO - Sqoop export successful
 2018-10-25 15:22:38,700 - process_hive_to_meds.hive_to_meds_dcm_summary.HiveToMedsDcmSummary - INFO - dcm_summary run has completed.
 2018-10-25 15:22:38,700 - process_hive_to_meds.hive_to_meds_dcm_summary.HiveToMedsDcmSummary - INFO - Process Completed
